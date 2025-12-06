@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+model PickList {
+  id        String   @id @default(uuid())
+  batch     String
+  status    PickListStatus @default(CREATED)
+  createdAt DateTime @default(now())
+}
+
+enum PickListStatus {
+  CREATED
+  PICKING
+  COMPLETED
+}
